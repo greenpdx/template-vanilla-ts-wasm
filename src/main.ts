@@ -27,8 +27,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button id="counter" type="button"></button>
     </div>
     <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
+      Click on any logo to learn more
     </p>
+    <div id="wasmdom>
+    </div>
   </div>
 `
 
