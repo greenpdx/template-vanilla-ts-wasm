@@ -29,7 +29,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
-
     <div id="wasmdom">
     </div>
   </div>
@@ -38,3 +37,5 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 let err = wasm.add_dom()
 console.log(err)
+let rslt =  await wasm.run("tst")
+console.log(rslt)

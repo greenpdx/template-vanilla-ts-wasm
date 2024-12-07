@@ -1,7 +1,9 @@
-mod utils;
-
 use wasm_bindgen::prelude::*;
 use web_sys::{console, window};
+
+
+mod utils;
+mod fetch;
 
 #[wasm_bindgen]
 extern "C" {
