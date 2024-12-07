@@ -18,13 +18,17 @@ wasm-bindgen = "0.2.99"
 # all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
 # code size when deploying.
 console_error_panic_hook = { version = "0.1.7", optional = true }
+serde = { version = "1.0.215", features = ["derive", "alloc"] }
+serde_json = { version = "1.0.133", features = ["alloc", "preserve_order", "indexmap"] }
+wasm-bindgen-futures = { version = "0.4.49", features = ["futures-core"] }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.49"
 
 [dependencies.web-sys]
 version = "0.3.76"
-features = ["console", 'Window', 'Document', 'Node', 'Element', 'HtmlElement']
+features = ["console", 'Window', 'Document', 'Node', 'Element', 'HtmlElement',
+'Headers', 'Request', 'RequestInit', 'RequestMode', 'Response']
 
 [profile.release]
 # Tell `rustc` to optimize for small code size.
