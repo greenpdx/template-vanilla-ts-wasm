@@ -6,7 +6,7 @@ import rustferris from '/rustacean-flat-happy.svg'
 import { setupCounter } from './counter.ts'
 import * as wasm from '../pkg'
 
-wasm.greet()
+//wasm.greet()
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -23,15 +23,18 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
     </a>
      <h1>WASM + Rust + Vite + TypeScript</h1>
+       <p class="read-the-docs">
+      Click on any logo to learn more
+    </p>
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
-    <p class="read-the-docs">
-      Click on any logo to learn more
-    </p>
-    <div id="wasmdom>
+
+    <div id="wasmdom">
     </div>
   </div>
 `
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+let err = wasm.add_dom()
+console.log(err)
