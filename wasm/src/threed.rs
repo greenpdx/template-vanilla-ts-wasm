@@ -1,18 +1,33 @@
+use std::error::Error;
 use three_d::*;
 use wasm_bindgen::prelude::*;
+use web_sys::Element;
+use winit::{
+    event_loop::{EventLoop, ActiveEventLoop},
+    window,
+    platform::web::WindowAttributesExtWebSys,
+};
+
+fn new_window(canvas: Element) -> Result<winit::window::Window, Box<dyn Error>> {
+    let event_loop = EventLoop::new()?.run_app()?;
+    let window_attr = winit::window::Window::default_attributes().with_canvas(Some(canvas));
+    let window = event_loop.create_window(window_attr)?;
+    Ok(window)
+}
+
 
 #[wasm_bindgen]
 pub fn threed() {
     let document = web_sys::window().unwrap().document().unwrap();
     let canvas = document.get_element_by_id("canvas").unwrap();
-
+    
     let window = Window::new(WindowSettings {
         title: "Shapes!".to_string(),
         max_size: Some((1280, 720)),
         ..Default::default()
     })
     .unwrap();
-    let context = canvas.gl();
+    let context = window.gl();
 
     let mut camera = Camera::new_perspective(
         window.viewport(),
