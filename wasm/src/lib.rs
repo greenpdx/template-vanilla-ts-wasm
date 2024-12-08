@@ -4,6 +4,8 @@ use web_sys::{console, window};
 
 mod utils;
 mod fetch;
+//mod webgl;
+mod threed;
 
 #[wasm_bindgen]
 extern "C" {
