@@ -24,7 +24,7 @@ pub struct Address {
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Company {
     pub name: String,
-    //#[wasm_bindgen(js_name = catchPhrase)]
+    #[wasm_bindgen(js_name = catchPhrase)]
     pub catchPhrase: String,
     pub bs: String,
 }

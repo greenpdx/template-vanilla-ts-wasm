@@ -1,19 +1,19 @@
 use std::error::Error;
 use three_d::*;
 use wasm_bindgen::prelude::*;
-use web_sys::Element;
+use web_sys::{Element, HtmlCanvasElement};
 use winit::{
     event_loop::{EventLoop, ActiveEventLoop},
     window,
     platform::web::WindowAttributesExtWebSys,
 };
 
-fn new_window(canvas: Element) -> Result<winit::window::Window, Box<dyn Error>> {
+/*fn new_window(canvas: HtmlCanvasElement) -> Result<winit::window::Window, Box<dyn Error>> {
     let event_loop = EventLoop::new()?.run_app()?;
     let window_attr = winit::window::Window::default_attributes().with_canvas(Some(canvas));
     let window = event_loop.create_window(window_attr)?;
     Ok(window)
-}
+}*/
 
 
 #[wasm_bindgen]
