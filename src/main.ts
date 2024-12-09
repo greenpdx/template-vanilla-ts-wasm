@@ -5,7 +5,7 @@ import bindgen from '/rustwasm.png'
 import rustferris from '/rustacean-flat-happy.svg'
 import { setupCounter } from './counter.ts'
 import * as wasm from '../pkg'
-
+console.log(wasm)
 //wasm.greet()
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -29,8 +29,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
-    <div id="wasmdom">
-    </div>
+    <div id="wasmdom"></div>
+    <canvas id="canvas"></canvas>
   </div>
 `
 
@@ -39,3 +39,6 @@ let err = wasm.add_dom()
 console.log(err)
 let rslt =  await wasm.run("tst")
 console.log(rslt)
+console.log(wasm.rtn_js(rslt))
+let ans = wasm.webgl()
+console.log(ans)
