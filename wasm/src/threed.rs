@@ -5,7 +5,7 @@ use web_sys::{Element, HtmlCanvasElement};
 use winit::{
     event_loop::{EventLoop, ActiveEventLoop},
     window,
-    platform::web::WindowAttributesExtWebSys,
+    //platform::web::WindowAttributesExtWebSys,
 };
 
 /*fn new_window(canvas: HtmlCanvasElement) -> Result<winit::window::Window, Box<dyn Error>> {
@@ -57,7 +57,7 @@ pub fn threed() {
     );
     sphere.set_transformation(Mat4::from_translation(vec3(0.0, 1.3, 0.0)) * Mat4::from_scale(0.2));
     let mut cylinder = Gm::new(
-        Mesh::new(&context, &CpuMesh::cylinder(16)),
+        Mesh::new(&context, &CpuMesh::cylinder(6)),
         PhysicalMaterial::new_transparent(
             &context,
             &CpuMaterial {
@@ -65,7 +65,7 @@ pub fn threed() {
                     r: 0,
                     g: 255,
                     b: 0,
-                    a: 200,
+                    a: 255,
                 },
                 ..Default::default()
             },
