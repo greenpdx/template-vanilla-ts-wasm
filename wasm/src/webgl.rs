@@ -1,13 +1,15 @@
 use wasm_bindgen::prelude::*;
-use web_sys::{WebGl2RenderingContext, WebGlProgram, WebGlShader};
+use web_sys::{HtmlCanvasElement, WebGl2RenderingContext, WebGlProgram, WebGlShader};
 
 #[wasm_bindgen]
 pub fn webgl() -> Result<(), JsValue> {
     let document = web_sys::window().unwrap().document().unwrap();
-    let canvas = document.get_element_by_id("canvas").unwrap();
+    let canvas: HtmlCanvasElement = document.get_element_by_id("canvas")
+        .unwrap()
+        .dyn_into::<HtmlCanvasElement>()
+        .unwrap();
     let _rslt = canvas.set_attribute("width", "400");
     let _rslt = canvas.set_attribute("height", "400");
-    let canvas: web_sys::HtmlCanvasElement = canvas.dyn_into::<web_sys::HtmlCanvasElement>()?;
 
     let context = canvas
         .get_context("webgl2")?
