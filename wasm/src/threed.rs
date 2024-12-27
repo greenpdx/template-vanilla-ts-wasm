@@ -1,12 +1,12 @@
-use std::error::Error;
+//use std::error::Error;
 use three_d::*;
 use wasm_bindgen::prelude::*;
-use web_sys::{Element, HtmlCanvasElement};
-use winit::{
-    event_loop::{EventLoop, ActiveEventLoop},
-    window,
+//use web_sys::{Element, HtmlCanvasElement};
+//use winit::{
+    //event_loop::{EventLoop, ActiveEventLoop},
+    //window,
     //platform::web::WindowAttributesExtWebSys,
-};
+//};
 
 /*fn new_window(canvas: HtmlCanvasElement) -> Result<winit::window::Window, Box<dyn Error>> {
     let event_loop = EventLoop::new()?.run_app()?;
@@ -19,7 +19,7 @@ use winit::{
 #[wasm_bindgen]
 pub fn threed() {
     let document = web_sys::window().unwrap().document().unwrap();
-    let canvas = document.get_element_by_id("canvas").unwrap();
+    let _canvas = document.get_element_by_id("canvas").unwrap();
     
     let window = Window::new(WindowSettings {
         title: "Shapes!".to_string(),

@@ -24,8 +24,8 @@ pub struct Address {
 #[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Company {
     pub name: String,
-    #[wasm_bindgen(js_name = catchPhrase)]
-    pub catchPhrase: String,
+    #[serde(rename = "catchPhrase")]
+    pub catch_chrase: String,
     pub bs: String,
 }
 
@@ -44,19 +44,31 @@ pub struct User {
 
 #[wasm_bindgen(getter_with_clone)]
 #[derive(Clone, Serialize, Deserialize, Debug)]
-struct UserData {
+pub struct UserData {
     users: Vec<User>
 }
+
+#[wasm_bindgen(getter_with_clone)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub struct UserMap {
+    id: u32,
+    user: User,
+}
+
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{console, Request, RequestInit, RequestMode, Response};
 
 #[wasm_bindgen]
-pub async fn run(repo: String) -> Result<UserData, JsValue> {
+pub async fn run(url: JsValue) -> Result<UserData, JsValue> {
     let opts = RequestInit::new();
     opts.set_method("GET");
     opts.set_mode(RequestMode::Cors);
-
-    let url = format!("https://jsonplaceholder.typicode.com/users");
+    console::log_1(&url);
+    let url = match url.as_string() {
+        Some(u) => {u},
+        None => {return Err(JsValue::from_str("Bad url"))}
+    };
+    //let url = format!("https://jsonplaceholder.typicode.com/users");
 
     let request = Request::new_with_str_and_init(&url, &opts)?;
 
@@ -80,6 +92,16 @@ pub async fn run(repo: String) -> Result<UserData, JsValue> {
 }
 
 #[wasm_bindgen]
-pub fn rtn_js(data: UserData) -> Result<JsValue, JsValue> {
-    Ok(serde_wasm_bindgen::to_value(&data)?)
+pub fn rtn_js(data: &UserData) -> Result<JsValue, JsValue> {
+    Ok(serde_wasm_bindgen::to_value(data)?)
+}
+
+use std::collections::HashMap;
+#[wasm_bindgen]
+pub fn vec2map(data: &UserData) -> Result<JsValue, JsValue> {
+    let mut hmap: HashMap<String, User> = HashMap::new();
+    let _ = data.users.iter().for_each(|u| {
+        hmap.insert(u.username.clone(), u.clone());
+    });
+    Ok(serde_wasm_bindgen::to_value(&hmap)?)
 }

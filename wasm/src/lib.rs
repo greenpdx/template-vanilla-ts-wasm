@@ -1,5 +1,5 @@
 use wasm_bindgen::prelude::*;
-use web_sys::{console, window};
+use web_sys::console;
 
 
 mod utils;
@@ -48,7 +48,7 @@ pub fn add_dom() -> Result<(), JsError> {
   };
   ele.set_text_content(Some("This is from Rust"));
   match val.append_child(&ele) {
-    Err(e) => return Err(JsError::new("No Append")),
+    Err(_e) => return Err(JsError::new("No Append")),
     Ok(n) => n
   };
   Ok(())
